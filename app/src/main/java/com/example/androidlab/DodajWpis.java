@@ -9,6 +9,8 @@ import android.widget.EditText;
 
 public class DodajWpis extends AppCompatActivity {
 
+    public DodajWpis() {}
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
