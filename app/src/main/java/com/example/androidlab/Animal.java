@@ -1,3 +1,5 @@
+package com.example.androidlab;
+
 import java.io.Serializable;
 
 public class Animal implements Serializable {
