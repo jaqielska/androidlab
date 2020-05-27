@@ -9,16 +9,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.androidlab.Animal;
 
 public class MySQLite extends SQLiteOpenHelper {
-
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION=1;
 
     public MySQLite(Context context) {
-        super(context, "animalsDB", null, DATABASE_VERSION);
+        super(context,"animalsDB",
+                null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase database) {
-
         String DATABASE_CREATE =
                 "create table animals " +
                         "(_id integer primary key autoincrement," +
@@ -27,16 +26,15 @@ public class MySQLite extends SQLiteOpenHelper {
                         "wielkosc real not null," +
                         "opis text not null);";
         database.execSQL(DATABASE_CREATE);
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS animals");
-                onCreate(db);
+        onCreate(db);
     }
 
-    public void dodaj(Animal zwierz){
+    public void dodaj(Animal zwierz) {
         SQLiteDatabase db =
                 this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -65,6 +63,7 @@ public class MySQLite extends SQLiteOpenHelper {
         values.put("wielkosc", zwierz.getWielkosc());
         values.put("opis", zwierz.getOpis());
         int i = db.update("animals", values, "_id = ?", new String[]{String.valueOf(zwierz.getId())});
+
         db.close();
         return i;
     }
@@ -75,7 +74,7 @@ public class MySQLite extends SQLiteOpenHelper {
         Cursor cursor =
                 db.query("animals", //a. table name
                         new String[] { "_id",
-                                "gatunek", "kolor", "wielkosc", "opis" }, // b. column names
+                                "gatunek", "kolor", "wielkosc", "opis" }, // b.column names
                         "_id = ?", // c. selections
                         new String[] {
                                 String.valueOf(id) }, // d. selections args
@@ -95,8 +94,8 @@ public class MySQLite extends SQLiteOpenHelper {
     }
 
     public Cursor lista(){
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db =
+                this.getReadableDatabase();
         return db.rawQuery("Select * from animals",null);
     }
-
 }

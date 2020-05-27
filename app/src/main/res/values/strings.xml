@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">androidlab</string>
+    <string-array name="gatunek">
+        <item>Pies</item>
+        <item>Kot</item>
+        <item>Niedźwiedź</item>
+        <item>Lis</item>
+        <item>Krowa</item>
+    </string-array>
 </resources>
